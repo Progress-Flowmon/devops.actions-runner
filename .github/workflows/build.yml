@@ -2,23 +2,23 @@ name: Runner CI
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-    - main
-    - releases/*
-    paths-ignore:
-    - '**.md'
-  pull_request:
-    branches:
-    - '**'
-    paths-ignore:
-    - '**.md'
+  #push:
+  #  branches:
+  #  - main
+  #  - releases/*
+  #  paths-ignore:
+  #  - '**.md'
+  #pull_request:
+  #  branches:
+  #  - '**'
+  #  paths-ignore:
+  #  - '**.md'
 
 jobs:
   build:
     strategy:
       matrix:
-        runtime: [ linux-x64, linux-arm64, linux-arm, win-x64, win-arm64, osx-x64, osx-arm64 ]
+        runtime: [ linux-x64 ]
         include:
         - runtime: linux-x64
           os: ubuntu-latest
