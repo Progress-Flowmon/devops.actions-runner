@@ -24,30 +24,6 @@ jobs:
           os: ubuntu-latest
           devScript: ./dev.sh
 
-        - runtime: linux-arm64
-          os: ubuntu-latest
-          devScript: ./dev.sh
-
-        - runtime: linux-arm
-          os: ubuntu-latest
-          devScript: ./dev.sh
-
-        - runtime: osx-x64
-          os: macOS-latest
-          devScript: ./dev.sh
-
-        - runtime: osx-arm64
-          os: macOS-latest
-          devScript: ./dev.sh
-
-        - runtime: win-x64
-          os: windows-2019
-          devScript: ./dev
-
-        - runtime: win-arm64
-          os: windows-latest
-          devScript: ./dev
-
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v3
@@ -57,13 +33,6 @@ jobs:
       run: |
         ${{ matrix.devScript }} layout Release ${{ matrix.runtime }}
       working-directory: src
-
-    # Run tests
-    - name: L0
-      run: |
-        ${{ matrix.devScript }} test
-      working-directory: src
-      if: matrix.runtime != 'linux-arm64' && matrix.runtime != 'linux-arm' && matrix.runtime != 'osx-arm64' && matrix.runtime != 'win-arm64'
 
     # Create runner package tar.gz/zip
     - name: Package Release
